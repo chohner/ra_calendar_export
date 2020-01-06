@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ra_calendar_export"
+version = "0.1.0"
+description = "CLI tool that scrapes a users RA calendar and exports an .ics file"
+authors = ["chohner <mail@chohner.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pytz = "^2019.3"
+ics = "^0.6"
+requests = "^2.22.0"
+beautifulsoup4 = "^4.8.2"
+click = "^7.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.3.2"
+black = "^19.10b0"
+pytest-cov = "^2.8.1"
+
+[tool.poetry.scripts]
+lint = "run:lint"
+test = "run:test"
+ics_export = "run:ics_export"
+
+[tool.black]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
