@@ -18,5 +18,5 @@ poetry run test  # run tests
 ```
 
 ## Todo
-- Add more locations to the timezone lookup
+- Add timezones for all countries
 - Add nicer CLI
