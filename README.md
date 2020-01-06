@@ -10,6 +10,9 @@ poetry install --no-dev  # install dependencies
 poetry run ics_export    # begin calendar export
 ```
 
+### Note
+The [ics.py](https://github.com/C4ptainCrunch/ics.py) library (converts all events to UTC time)[https://github.com/C4ptainCrunch/ics.py/issues/188] before exporting to .ics file. Times should still show up correct though.
+
 ## Development
 ```
 poetry install   # install dependencies
