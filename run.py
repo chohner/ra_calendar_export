@@ -6,8 +6,6 @@ from click.testing import CliRunner
 import black
 import pytest
 
-from ra_calendar_export import main
-
 def lint():
     code_root = Path(__file__).parent
     runner = CliRunner()
@@ -25,6 +23,7 @@ def test():
     sys.exit(0) if test_result == pytest.ExitCode.OK else sys.exit(1)
 
 def ics_export():
+    from ra_calendar_export import main  # importing at top of file would screw up coverage
     username = input("username:")
     password = getpass("password (only for private profiles):")
     main.ics_file_from_profile(username, password)
