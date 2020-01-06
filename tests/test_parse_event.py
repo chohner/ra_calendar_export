@@ -142,9 +142,3 @@ def test_Event_from_dict():
 
     for key in expected:
         assert dict_event.__getattribute__(key) == expected[key]
-
-
-# def test_Event():
-#     e = event.Event(from_id=1350471)
-#     print(e)
-#     assert False
