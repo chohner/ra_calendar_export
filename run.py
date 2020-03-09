@@ -3,8 +3,6 @@ from pathlib import Path
 from getpass import getpass
 
 from click.testing import CliRunner
-import black
-import pytest
 
 def ics_export():
     from ra_calendar_export import main  # importing at top of file would screw up coverage
@@ -13,6 +11,11 @@ def ics_export():
     main.ics_file_from_profile(username, password)
 
 def lint():
+    try:
+        import black
+    except ModuleNotFoundError as e:
+        print("Linting is not available without Black installed, exiting.")
+        sys.exit(1)
     code_root = Path(__file__).parent
     runner = CliRunner()
     result = runner.invoke(
@@ -25,5 +28,10 @@ def lint():
     sys.exit(0) if result.exit_code == 0 else sys.exit(1)
 
 def test():
+    try:
+        import pytest
+    except ModuleNotFoundError:
+        print("Testing is not available without pytest installed, exiting.")
+        sys.exit(1)
     test_result = pytest.main(['--cov=ra_calendar_export', '--cov-report', 'term-missing'])
     sys.exit(0) if test_result == pytest.ExitCode.OK else sys.exit(1)
