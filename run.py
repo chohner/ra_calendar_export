@@ -4,11 +4,16 @@ from getpass import getpass
 
 from click.testing import CliRunner
 
+
 def ics_export():
-    from ra_calendar_export import main  # importing at top of file would screw up coverage
+    from ra_calendar_export import (
+        main,
+    )  # importing at top of file would screw up coverage
+
     username = input("username:")
     password = getpass("password (only for private profiles):")
     main.ics_file_from_profile(username, password)
+
 
 def lint():
     try:
@@ -22,10 +27,11 @@ def lint():
         black.main,
         ["run.py", f"{code_root}/ra_calendar_export", f"{code_root}/tests"],
         mix_stderr=True,
-        color=True
+        color=True,
     )
     print(result.stdout)
     sys.exit(0) if result.exit_code == 0 else sys.exit(1)
+
 
 def test():
     try:
@@ -33,5 +39,7 @@ def test():
     except ModuleNotFoundError:
         print("Testing is not available without pytest installed, exiting.")
         sys.exit(1)
-    test_result = pytest.main(['--cov=ra_calendar_export', '--cov-report', 'term-missing'])
+    test_result = pytest.main(
+        ["--cov=ra_calendar_export", "--cov-report", "term-missing"]
+    )
     sys.exit(0) if test_result == pytest.ExitCode.OK else sys.exit(1)
