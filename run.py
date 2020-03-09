@@ -11,7 +11,7 @@ def lint():
     runner = CliRunner()
     result = runner.invoke(
         black.main,
-        [f"{code_root}/ra_calendar_export", f"{code_root}/tests"],
+        ["run.py", f"{code_root}/ra_calendar_export", f"{code_root}/tests"],
         mix_stderr=True,
         color=True
     )
